@@ -40,7 +40,7 @@ docker compose up -d
 
 Пример SQL запроса для виртуального датасета в Superset лежит в файле [`superset/queries/dashboard_query.sql`](superset/queries/dashboard_query.sql). Скопируй его в Superset при создании датасета.
 
-## 📸 Дашборд
+## Дашборд
 
 <img width="2553" height="1065" alt="image" src="https://github.com/user-attachments/assets/ee12c20e-0268-40d9-8137-e5c2496da191" />
 
