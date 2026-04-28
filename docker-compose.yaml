@@ -23,7 +23,6 @@ x-airflow-common: &airflow-common
 
 services:
 
-  # ---------- ClickHouse ----------
   clickhouse:
     image: clickhouse/clickhouse-server:25.1.2.3
     container_name: clickhouse-server
@@ -47,7 +46,6 @@ services:
       timeout: 5s
       retries: 5
 
-  # ---------- Airflow ----------
   postgres:
     image: postgres:13
     environment:
@@ -131,10 +129,10 @@ services:
       _AIRFLOW_WWW_USER_USERNAME: airflow
       _AIRFLOW_WWW_USER_PASSWORD: airflow
 
-  # ---------- Superset ----------
   superset:
     image: apache/superset:latest
     container_name: superset
+    user: "root"
     ports:
       - "8088:8088"
     environment:
@@ -143,11 +141,12 @@ services:
       - superset-data:/app/superset_home
       - ./superset/superset_config.py:/app/pythonpath/superset_config.py
     command: >
-      bash -c "pip install clickhouse-connect &&
+      bash -c "pip install --target=/app/.venv/lib/python3.10/site-packages clickhouse-connect clickhouse-sqlalchemy &&
                superset db upgrade &&
                superset fab create-admin --username admin --firstname Admin --lastname User --email admin@example.com --password admin || true &&
                superset init &&
                superset run -h 0.0.0.0 -p 8088 --with-threads --reload --debugger"
+  
 
 volumes:
   postgres-db-volume:
