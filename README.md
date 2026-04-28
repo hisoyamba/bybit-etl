@@ -18,7 +18,6 @@ echo "AIRFLOW_UID=$(id -u)" > .env
 docker compose up -d
 ```
 
-Подожди 2-3 минуты пока всё поднимется.
 
 ## Креды
 
@@ -41,5 +40,7 @@ docker compose up -d
 
 Пример SQL запроса для виртуального датасета в Superset лежит в файле [`superset/queries/dashboard_query.sql`](superset/queries/dashboard_query.sql). Скопируй его в Superset при создании датасета.
 
-Запрос использует `argMax(close, dt_load)` для получения актуальных данных из `ReplacingMergeTree` — это гарантирует что в дашборде будут самые свежие значения, даже если в таблице остались дубли после перезаливок.
+## 📸 Дашборд
+
+<img width="2553" height="1065" alt="image" src="https://github.com/user-attachments/assets/ee12c20e-0268-40d9-8137-e5c2496da191" />
 
